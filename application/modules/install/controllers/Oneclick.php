@@ -23,19 +23,36 @@ class Oneclick extends \Ilch\Controller\Frontend
              * Cms not installed yet.
              */
 
-            //Database configuration
-            $_SESSION['install']['dbEngine'] = 'Mysql';
-            $_SESSION['install']['dbHost'] = 'localhost';
+            //Configuration
+            if ($this->getRequest()->getParam('language')) {
+                $_SESSION['language'] = $this->getRequest()->getParam('language');
+            } else {
+                $_SESSION['language'] = 'de_DE';
+            }
+            if ($this->getRequest()->getParam('dbEngine')) {
+                $_SESSION['install']['dbEngine'] = $this->getRequest()->getParam('dbEngine');
+            } else {
+                $_SESSION['install']['dbEngine'] = 'Mysql';
+            }
+            if ($this->getRequest()->getParam('dbPrefix')) {
+                $_SESSION['install']['dbPrefix'] = $this->getRequest()->getParam('dbPrefix');
+            } else {
+                $_SESSION['install']['dbPrefix'] = 'localhost';
+            }
+            if ($this->getRequest()->getParam('dbName')) {
+                $_SESSION['install']['dbName'] = $this->getRequest()->getParam('dbName');
+            }
+            if ($this->getRequest()->getParam('dbName')) {
+                $_SESSION['install']['dbUser'] = $this->getRequest()->getParam('dbUser');
+            }
+
+            $_SESSION['install']['timezone'] = SERVER_TIMEZONE;
             $_SESSION['install']['dbPrefix'] = 'ilch_';
 
             //Admin User
             $_SESSION['install']['adminName'] = 'Admin';
             $_SESSION['install']['adminPassword'] = '1234';
             $_SESSION['install']['adminEmail'] = 'noreply@ilch.de';
-
-            //Language and timezone
-            $_SESSION['language'] = 'de_DE';
-            $_SESSION['install']['timezone'] = SERVER_TIMEZONE;
 
             $this->getLayout()->setFile('modules/install/layouts/oneclick');
 

@@ -32,7 +32,7 @@
                class="form-control"
                id="dbName"
                name="dbName"
-               value="<?php if ($this->get('dbName') != '') { echo $this->escape($this->get('dbName')); } ?>" />
+               value="<?=($this->get('dbName') != '') ? $this->escape($this->get('dbName')) : $_SESSION['install']['dbName'] ?>" />
     </div>
     <?php if (!empty($errors['dbName'])): ?>
         <span class="col-lg-offset-3 col-lg-9 help-block"><?=$this->getTrans($errors['dbName']) ?></span>
@@ -47,7 +47,7 @@
                class="form-control"
                id="dbUser"
                name="dbUser"
-               value="<?php if ($this->get('dbUser') != '') { echo $this->escape($this->get('dbUser')); } ?>" />
+               value="<?=($this->get('dbUser') != '') ? $this->escape($this->get('dbUser')) : $_SESSION['install']['dbUser'] ?>" />
         <div class="input-group-addon" rel="tooltip" title="<?=$this->getTrans('dbUserInfo') ?>"><i class="fa fa-info-circle"></i></div>
     </div>
     <?php if (!empty($errors['dbUser'])): ?>
@@ -63,7 +63,7 @@
                class="form-control"
                id="dbPassword"
                name="dbPassword"
-               value="<?php if ($this->get('dbPassword') != '') { echo $this->escape($this->get('dbPassword')); } ?>" />
+               value="<?=($this->get('dbPassword') != '') ? $this->escape($this->get('dbPassword')) : $_SESSION['install']['dbPassword'] ?>" />
     </div>
 </div>
 
